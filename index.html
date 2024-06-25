@@ -1,0 +1,217 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Raelynn Ordering App</title>
+   <link rel="stylesheet" href="assets/styles.css">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter:wght@300&display=swap"
+      rel="stylesheet">
+   <style>
+      .highlighted {
+         border: 2px solid #f00;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="content">
+      <div class="container">
+         <div class="header">
+            <h1>
+               <svg width="60" height="60" style="padding-right: 12px;" xmlns="http://www.w3.org/2000/svg">
+                  <image href="assets/coffee.png" height="60" width="60" />
+               </svg>
+               Raelynn Ordering App
+            </h1>
+         </div>
+         <h2>Drinks</h2>
+         <div class="drink-deck">
+            <div class="tile" id="chocolate-milk" onclick="setDrink('Chocolate Milk')">
+               <img src="assets/chocolate-milk.jpg" height="150px" />
+               <div class="item-title">Chocolate Milk</div>
+            </div>
+            <div class="tile" id="sodee" onclick="setDrink('Sodee')">
+               <img src="assets/Neon-Italian-Cream-Soda.jpg" height="150px" />
+               <div class="item-title">Sodee</div>
+            </div>
+            <div class="tile" id="lemonade" onclick="setDrink('Lemonade')">
+               <img src="assets/Pink-Lemonade.jpg" height="150px" />
+               <div class="item-title">Lemonade</div>
+            </div>
+         </div>
+         <h2>Snacks</h2>
+         <div class="snack-deck">
+            <div class="tile" id="gummy-bears" onclick="setSnack('Gummy Bears')">
+               <img src="assets/Gummy-Bear.jpg" height="150px" />
+               <div class="item-title">Gummy Bears</div>
+            </div>
+            <div class="tile" id="cupcake" onclick="setSnack('Cupcake')">
+               <img src="assets/cup-cakes.jpg" height="150px" />
+               <div class="item-title">Cupcake</div>
+            </div>
+            <div class="tile" id="cookie" onclick="setSnack('Chocolate Chip Cookie')">
+               <img src="assets/Chocolate-chip.jpg" height="150px" />
+               <div class="item-title">Chocolate Chip Cookie</div>
+            </div>
+         </div>
+      </div>
+      <div class="forms">
+         <div class="h2forms">Checkout</div>
+         <h3 class="h3forms">Your Order</h3>
+         <div id="order">
+            <div id="drink" class="item-title"></div>
+            <div id="snack" class="item-title"></div>
+         </div>
+         <hr>
+         <h3 class="h3forms">Your Info</h3>
+         <form action="/action_page.php" method="get" name="myForm">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" id="name" name="name" class="form-field">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" id="address" name="address" class="form-field">
+            <label for="comment" class="form-label">Comments</label>
+            <textarea id="comment" form="usrform" class="form-field"></textarea>
+            <input type="button" value="Purchase" class="form-btn">
+         </form>
+      </div>
+   </div>
+   <div class="alan-btn"></div>
+   <div id="song-embed">
+      <a href="https://youtu.be/Jgdo8ZQ2NbU?si=J5LLDis6qKZznvVN" target="_blank">
+          <img src="assets/handdance.jpg" alt="YouTubeSongPic" width="300px">
+      </a>
+  </div>
+
+  <div id="pink-dog">
+   <img src="assets/pink-dog.jpg" alt="Pink Dog" width="300px">
+  </div>
+   <script type="text/javascript" src="https://v1.alan.app/web/lib/alan_lib.min.js"></script>
+   <script type="text/javascript"
+ src="https://v1.alan.app/web/lib/alan_lib.min.js"></script>
+<script>
+  var alanBtnInstance = alanBtn({
+    key: "cfbb45080bd6977c29b54c39ed73f2022e956eca572e1d8b807a3e2338fdd0dc/stage",
+    onCommand: function (commandData) {
+      if (commandData.command === "highlight") {
+               highlightProduct(commandData.item);
+               if (commandData.command === "setDrink") {
+                  setDrink(commandData.item);
+               } else if (commandData.command === "setSnack") {
+                  setSnack(commandData.item);
+               } else if (commandData.command === "playFavoriteSong") {
+                  playFavoriteSong();
+               } else if (commandData.command === "showPinkDog") {
+                    showPinkDog();
+                } else if (commandData.command === "hidePinkDog") {
+                    hidePinkDog();
+                }
+            }
+         },
+    rootEl: document.getElementById("alan-btn"),
+  });
+</script>
+   <script>
+      let drink = '';
+      let snack = '';
+
+      function setDrink(drinkItem) {
+         drink = drinkItem;
+         document.getElementById("drink").innerHTML = drink;
+         highlightProduct(drink.replace(/\s+/g, '-').toLowerCase());
+      }
+
+      function setSnack(snackItem) {
+         snack = snackItem;
+         document.getElementById("snack").innerHTML = snack;
+         highlightProduct(snack.replace(/\s+/g, '-').toLowerCase());
+      }
+
+      function highlightProduct(item) {
+         const el = document.getElementById(item);
+         if (el) {
+            [...el.parentElement.children].forEach(sib => sib.classList.remove('highlighted'));
+            el.classList.add('highlighted');
+         }
+      }
+
+      function playFavoriteSong() {
+            document.getElementById("song-embed").style.display = 'block';
+        }
+
+      function showPinkDog() {
+            document.getElementById("pink-dog").style.display = 'block';
+        }
+
+      function hidePinkDog() {
+            document.getElementById("pink-dog").style.display = 'none';
+        }
+   </script>
+   <footer>
+      <p>Created by my Daddy
+         R.Cooper
+      </p>
+  </footer>
+  <div class="instructions">
+   <h2>Alan AI Voice Commands</h2>
+   <p>This section explains the various voice commands you can use with the Raelynn Ordering App and what they do:</p>
+   <ul>
+      <li><strong>Order Drinks:</strong>
+         <ul>
+            <li>Say "Can I have a drink?" to hear the available drinks. The options will be highlighted as they are read out.</li>
+            <li>Say "Get me a [drink name]", "One [drink name], please", or "I need/want a [drink name]" to add a drink to your order.</li>
+         </ul>
+      </li>
+      <li><strong>Order Snacks:</strong>
+         <ul>
+            <li>Say "Get me a [snack name]", "One [snack name], please", or "I need/want a [snack name]" to add a snack to your order.</li>
+         </ul>
+      </li>
+      <li><strong>Provide Your Name:</strong>
+         <ul>
+            <li>Say "My name is [your name]" to input your name into the order form.</li>
+         </ul>
+      </li>
+      <li><strong>Provide Your Address:</strong>
+         <ul>
+            <li>Say "My address is [your address]" to input your address into the order form.</li>
+         </ul>
+      </li>
+      <li><strong>Greetings and Information:</strong>
+         <ul>
+            <li>Say "Hello Ray Ray" or "Hello" to receive a greeting.</li>
+            <li>Say "What is your name?" to hear the bot's name.</li>
+            <li>Say "Mommy" or "mom" to hear a description of the user's mom.</li>
+         </ul>
+      </li>
+      <li><strong>Interactive Games:</strong>
+         <ul>
+            <li>Say "Do you want to play with me?" or "Play with me" to start a game.</li>
+            <li>Say "Do you like music?" or "Sing with me" to hear the bot sing a song.</li>
+            <li>Say "Do you want to play hide and seek?" or "Hide and seek" to start a hide and seek game. The bot will guide you through the game.</li>
+            <li>Say "Tell me a joke" or "Make me laugh" to hear a joke.</li>
+            <li>Say "Do you want to play a guessing game?" or "Guessing game" to play an animal guessing game.</li>
+            <li>Say "Do you want to play Simon Says?" or "Simon Says" to play Simon Says.</li>
+            <li>Say "Can you sing a song?" or "Sing a song" to hear the bot sing "Twinkle, Twinkle, Little Star."</li>
+            <li>Say "Tell me a fun fact" or "Fun fact" to hear an interesting fact.</li>
+            <li>Say "Do you want to play trivia?" or "Trivia game" to play a trivia game.</li>
+         </ul>
+      </li>
+      <li><strong>Favorite Song and Pink Dog:</strong>
+         <ul>
+            <li>Say "Play my favorite song" or "Play my song" to play a favorite song. If it does not work, you might need to play it manually.</li>
+            <li>Say "Show the pink dog" or "Show me the pink dog" to display the pink dog image.</li>
+            <li>Say "Hide the pink dog" or "Hide the pink dog" to hide the pink dog image.</li>
+         </ul>
+      </li>
+      <li><strong>Miscellaneous:</strong>
+         <ul>
+            <li>Say "Where is the dog" to hear a response about the dog's location, with a humorous twist.</li>
+         </ul>
+      </li>
+   </ul>
+   <p>Enjoy interacting with the Raelynn Ordering App using these voice commands!</p>
+</div>
+</body>
+
+</html>
